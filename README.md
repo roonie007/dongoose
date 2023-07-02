@@ -4,9 +4,10 @@ Dongoose is a simple ( but intelligent ), lightweight, and easy to use ORM for D
 
 ## Features
 
-- 📄 **Schema** - Dongoose uses Zod under the hood to provide a simple schema API to define the structure of your data and validate it.
-- 🔍 **Indexes** - Dongoose allows you to define indexes to automatically insert, update and delete data from the indexes.
+- 📄 **Schema** - Dongoose leverages Zod for easy data structuring and validation through a simple schema API.
+- 🔍 **Indexes** - Dongoose enables automatic data insertion, update, and deletion through defined indexes.
 - ✔️ **Validation** - Dongoose validates data before inserting or updating it using Zod.
+- ⏰ **Timestamps** - Dongoose automatically adds timestamps to your data ( createdAt, updatedAt ).
 - 📝 **Typescript** - Dongoose is written in Typescript and provides type definitions for all of its methods.
 - 🍃 **Lightweight** - Dongoose is very lightweight and has no dependencies other than Zod.
 - 👍 **Easy to use** - Dongoose is very easy to use and has a simple API.
@@ -54,6 +55,71 @@ const _sameUserWithId = await users.findById(user!.id);
 await users.updateById(user.id, { firstname: "John" });
 
 await users.deleteById(user.id);
+```
+
+## API
+
+### Dongoose
+
+```typescript
+Dongoose(schema, options);
+```
+
+#### options
+
+```typescript
+{
+  db: KVStore;
+  name: string;
+  indexes?: string[];
+}
+```
+
+### create
+
+```typescript
+await users.create({
+  email: "malcatbo@wulvi.com",
+  username: "Emmet",
+});
+```
+
+### findOne
+
+```typescript
+await users.findOne({ email: "malcatbo@wulvi.com" });
+```
+
+### findById
+
+```typescript
+await users.findById("076520f1-cbf1-4e29-8af5-d6db8c851371");
+```
+
+### updateOne
+
+```typescript
+await users.updateOne({ username: "Emmet" });
+```
+
+### updateById
+
+```typescript
+await users.updateById("076520f1-cbf1-4e29-8af5-d6db8c851371", {
+  username: "garrett.guzman",
+});
+```
+
+### deleteOne
+
+```typescript
+await users.deleteOne({ username: "Emmet" });
+```
+
+### deleteById
+
+```typescript
+await users.deleteById("076520f1-cbf1-4e29-8af5-d6db8c851371");
 ```
 
 ## License
