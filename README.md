@@ -37,8 +37,8 @@ const users = Dongoose(
     lastname: d.string().optional(),
   },
   {
-    db,
-    name: "users",
+    db, // Your Deno KV intance
+    name: "users", // Your collection name
     indexes: ["email", "username"],
   }
 );
@@ -56,6 +56,37 @@ await users.updateById(user.id, { firstname: "John" });
 
 await users.deleteById(user.id);
 ```
+
+## How it works
+
+Dongoose uses Zod to validate data before inserting or updating it. It also uses Zod to create a schema for your data. Dongoose uses the schema to automatically add timestamps to your data and to automatically insert, update, and delete data through defined indexes.
+
+### Indexes
+
+Let's say you have a collection of users and you want to be able to find a user by their `email` or `username`. You can define indexes for your collection like this:
+
+```typescript
+const users = Dongoose(
+  {
+    email: d.string().email(),
+    username: d.string(),
+
+    firstname: d.string().optional(),
+    lastname: d.string().optional(),
+  },
+  {
+    db,
+    name: "users", // Your collection name
+    indexes: ["email", "username"],
+  }
+);
+```
+
+Upon user creation, update or delete, your data will be automatically inserted, updated or delete into/from these indexes: `["users_by_id", USER_ID]`, `["users_by_email", USER_EMAIL]`, and `["users_by_username", USER_EMAIL]`.
+
+### Timestamps
+
+Dongoose automatically adds timestamps to your data ( `createdAt`, `updatedAt` ) upon user creation or update.
 
 ## API
 
