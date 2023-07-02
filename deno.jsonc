@@ -1,0 +1,13 @@
+{
+  "fmt": {
+    "indentWidth": 2,
+    "lineWidth": 120,
+    "semiColons": true,
+    "singleQuote": true,
+    "useTabs": false
+  },
+  "imports": {
+    "$std/": "https://deno.land/std@0.192.0/",
+    "zod": "https://deno.land/x/zod@v3.21.4/mod.ts"
+  }
+}
