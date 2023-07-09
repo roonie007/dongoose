@@ -1,5 +1,4 @@
-import { afterAll, beforeAll, describe, it } from '$std/testing/bdd.ts';
-import { assertEquals, assertExists } from '$std/testing/asserts.ts';
+import { assertEquals, assertExists, afterAll, beforeAll, describe, it } from '../deps_test.ts';
 import { d, Dongoose } from '../mod.ts';
 
 const schema = {

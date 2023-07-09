@@ -1,5 +1,4 @@
-import { deepMerge } from '$std/collections/deep_merge.ts';
-import { z } from 'zod';
+import { deepMerge, z } from '../deps.ts';
 
 // Define the options for the Dongoose function
 interface DongooseOptions<T> {
